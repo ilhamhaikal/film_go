@@ -1,5 +1,10 @@
 {
-    "build": "go build -o out ./cmd",
-    "start": "./out"
+    "services": [
+      {
+        "name": "film_go",
+        "buildCommand": "go build -o out ./cmd",
+        "startCommand": "./out"
+      }
+    ]
   }
   

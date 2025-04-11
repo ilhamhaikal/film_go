@@ -14,8 +14,8 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// Auto migrate the schema
-	err = db.AutoMigrate(&models.Cinema{})
+	// Auto migrate both schemas
+	err = db.AutoMigrate(&models.Cinema{}, &models.User{})
 	if err != nil {
 		log.Fatal(err)
 	}

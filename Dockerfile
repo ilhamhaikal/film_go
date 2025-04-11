@@ -3,11 +3,11 @@ FROM golang:1.21-alpine
 WORKDIR /app
 
 COPY go.mod go.sum ./
-RUN go mod download
+RUN go mod download && go mod verify
 
 COPY . .
 
-RUN go build -o main ./cmd/main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o main ./cmd/main.go
 
 EXPOSE 8080
 

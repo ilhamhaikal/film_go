@@ -21,6 +21,14 @@ func NewServer(db *gorm.DB) *Server {
 }
 
 func (s *Server) SetupRoutes() {
+	// Add health check endpoint
+	s.router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"status":  "healthy",
+			"message": "API is running",
+		})
+	})
+
 	cinemaRepo := repository.NewCinemaRepository(s.db)
 	cinemaHandler := handlers.NewCinemaHandler(cinemaRepo)
 
